@@ -11,7 +11,7 @@ Each folder corresponds to a specific article, allowing you to easily clone, run
 
 The repository is organized by project/article topics. Inside each folder, you will find a dedicated README with specific setup instructions for that lab. 
 
-* 📁 /retry-without-backoff-makes-your-service-fall-over — Measure the impact of retry backoff on CPU usage.
+* 📁 [/retry-without-backoff-makes-your-service-fall-over](./retry-without-backoff-makes-your-service-fall-over) — Measure the impact of retry backoff on CPU usage.
 
 ### 🚀 Getting Started
 

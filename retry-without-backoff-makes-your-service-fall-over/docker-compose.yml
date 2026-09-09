@@ -1,0 +1,28 @@
+services:
+  server:
+    build: ./server
+    container_name: retry-backoff-server
+    environment:
+      READY_AFTER_SECONDS: ${READY_AFTER_SECONDS:-0.5}
+      SERVER_DELAY_MS: ${SERVER_DELAY_MS:-25}
+      FAIL_RATE: ${FAIL_RATE:-0.9}
+      PORT: 8080
+    ports:
+      - "8080:8080"
+    cpus: "1.0"
+    cpuset: "2"
+
+  client:
+    build: ./client
+    container_name: retry-backoff-client
+    depends_on:
+      - server
+    environment:
+      SERVER_URL: http://server:8080/data
+      BACKOFF_MS: ${BACKOFF_MS:-0}
+      REQUESTS_PER_RUN: ${REQUESTS_PER_RUN:-1000}
+      CONCURRENCY: ${CONCURRENCY:-20}
+      WORKER_TIMEOUT_SECONDS: ${WORKER_TIMEOUT_SECONDS:-2}
+      MAX_RETRIES: ${MAX_RETRIES:-10}
+    cpus: "1.0"
+    cpuset: "3"
